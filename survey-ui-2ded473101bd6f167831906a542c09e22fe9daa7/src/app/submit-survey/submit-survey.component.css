@@ -1,0 +1,13 @@
+.d-grid {
+    display: grid;
+}
+
+.starlabel:after {
+    content: " *";
+    color: red;
+}
+
+.alert {
+    margin-top: 5px;
+    display: inline-block;
+}

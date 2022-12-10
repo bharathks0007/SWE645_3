@@ -1,0 +1,142 @@
+<div class="col-md-6 offset-md-3">
+    <h2>New Survey</h2>
+    <form (ngSubmit)="onSubmit()" name="submitSurvey" #submitSurvey="ngForm">
+        <div class="d-grid gap-3">
+            <div class="form-group">
+                <label for="firstName" class="starlabel">First Name</label>
+                <input type="text" class="form-control" id="firstName" [(ngModel)]="survey.firstName" name="firstName"
+                    required #firstName="ngModel">
+                <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid" role="alert">Required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="starlabel">Last Name</label>
+                <input type="text" class="form-control" id="lastName" [(ngModel)]="survey.lastName" name="lastName"
+                    required #lastName="ngModel">
+                <div class="alert alert-danger" *ngIf="lastName.touched && lastName.invalid" role="alert">Required</div>
+            </div>
+
+            <div class="form-group">
+                <label class="starlabel">Email</label>
+                <input type="email" class="form-control" id="email" [(ngModel)]="survey.email" name="email" required
+                    #email="ngModel">
+                <div class="alert alert-danger" *ngIf="email.touched && email.invalid" role="alert">Required</div>
+            </div>
+
+            <div class="form-group">
+                <label class="starlabel">Street Address</label>
+                <input type="text" class="form-control" id="address" [(ngModel)]="survey.address" name="address"
+                    required #address="ngModel">
+                <div class="alert alert-danger" *ngIf="address.touched && address.invalid" role="alert">Required</div>
+            </div>
+
+            <div class="form-group">
+                <label class="starlabel">City</label>
+                <input type="text" class="form-control" id="city" [(ngModel)]="survey.city" name="city" required
+                    #city="ngModel">
+                <div class="alert alert-danger" *ngIf="city.touched && city.invalid" role="alert">Required</div>
+            </div>
+
+            <div class="form-group">
+                <label class="starlabel">State</label>
+                <input type="text" class="form-control" id="state" [(ngModel)]="survey.state" name="state" required
+                    #state="ngModel">
+                <div class="alert alert-danger" *ngIf="state.touched && state.invalid" role="alert">Required</div>
+            </div>
+
+            <div class="form-group">
+                <label class="starlabel">Zip</label>
+                <input type="number" class="form-control" id="zip" [(ngModel)]="survey.zip" name="zip" required
+                    #zip="ngModel">
+                <div class="alert alert-danger" *ngIf="zip.touched && zip.invalid" role="alert">Required</div>
+            </div>
+
+            <div class="form-group">
+                <label class="starlabel">Telephone</label>
+                <input type="number" class="form-control" id="telephone" [(ngModel)]="survey.telephone" name="telephone"
+                    required #telephone="ngModel">
+                <div class="alert alert-danger" *ngIf="telephone.touched && telephone.invalid" role="alert">Required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="starlabel">Date of Survey</label>
+                <div class="input-group date" data-provide="datepicker">
+                    <input type="date" class="form-control" id="dateOfSurvey" [(ngModel)]="survey.dateOfSurvey"
+                        name="dateOfSurvey" required #dateOfSurvey="ngModel">
+                    <div class="alert alert-danger" *ngIf="dateOfSurvey.touched && dateOfSurvey.invalid" role="alert">
+                        Required</div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label>What do you like about campus?</label>
+                <div class="form-check" *ngFor="let like of liking; let i = index">
+                    <input class="form-check-input" type="checkbox" (change)="addSelectedCheckbox(like.name, $event)"
+                        name="likings">
+                    {{like.name}}
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label>How did you become interested in George Mason University?</label>
+                <div class="form-check">
+                    <input [(ngModel)]="survey.interest" class="form-check-input" type="radio" name="interest"
+                        value="Friends">
+                    <label class="form-check-label" for="interest">
+                        Friends
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="survey.interest" class="form-check-input" type="radio" name="interest"
+                        value="Television">
+                    <label class="form-check-label" for="interest">
+                        Television
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="survey.interest" class="form-check-input" type="radio" name="interest"
+                        value="Internet">
+                    <label class="form-check-label" for="interest">
+                        Internet
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="survey.interest" class="form-check-input" type="radio" name="interest"
+                        value="Others">
+                    <label class="form-check-label" for="interest">
+                        Others
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Would you recommend George Mason University to other prospective students?</label>
+                <select name="recommendation" class="form-select" [(ngModel)]="survey.recommendation">
+                    <option *ngFor="let rec of recommend" [value]="rec"> {{ rec }} </option>
+                </select>
+            </div>
+
+            <div class="form-group d-grid gap-2">
+                <button class="btn btn-outline-success" type="submit" [disabled]="submitSurvey.invalid"
+                    (click)="show=true">Submit</button>
+
+                <div class="alert text-white bg-success border-0" *ngIf="show">
+                    <div class="d-sm-flex justify-content-sm-center">
+                        <div class="toast-body">
+                            Thanks You! Your survey has been successfully submitted.
+                        </div>
+                        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"
+                            (click)="show=false"></button>
+                    </div>
+                </div>
+
+                <button class="btn btn-outline-primary" type="reset">Reset</button>
+                <a href="/" id="cancel" name="cancel" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
