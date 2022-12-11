@@ -10,6 +10,7 @@
 	</parent>
 	<groupId>com.survey.app</groupId>
 	<artifactId>survey</artifactId>
+	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>survey</name>
 	<description>Survey App REST API</description>

@@ -17,7 +17,7 @@ import com.survey.app.model.Survey;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/api/v1.0")
+@RequestMapping("/survey")
 public class SurveyController {
 	
 	private SurveyInterface surveyService;
